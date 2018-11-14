@@ -1,3 +1,9 @@
+package app;
+
+import dom.Connection;
+import dom.Neuron;
+import dom.NeuronLevel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,43 +12,40 @@ public class NNSolutionTwo {
 	static List<NeuronLevel> neuronlevels;
 	
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		neuronlevels = new ArrayList<NeuronLevel>();
-		
-		try {
+
+		try (Scanner scanner = new Scanner(System.in)) {
+			neuronlevels = new ArrayList<NeuronLevel>();
 			NNSolutionOne.entering(scanner, neuronlevels);
 			weighting(scanner, neuronlevels);
-				
+
 			int esemeny = Integer.parseInt(scanner.nextLine());
 			System.out.println(esemeny);
-			
-			for(int i=0; i<esemeny; i++) {
+
+			for (int i = 0; i < esemeny; i++) {
 				neuronsValueCalculated(scanner.nextLine().split(","), neuronlevels);
 				Neuron neur;
-				int size = neuronlevels.get(neuronlevels.size()-1).getNeurons().size();
-				for(int k=0; k<size; k++) {
-					neur = neuronlevels.get(neuronlevels.size()-1).getNeurons().get(k);
-					if(k<size-1)
-						System.out.print(neur.getValue()+",");
+				int size = neuronlevels.get(neuronlevels.size() - 1).getNeurons().size();
+				for (int k = 0; k < size; k++) {
+					neur = neuronlevels.get(neuronlevels.size() - 1).getNeurons().get(k);
+					if (k < size - 1)
+						System.out.print(neur.getValue() + ",");
 					else {
 						System.out.println(neur.getValue());
 					}
 				}
 				//neuronlevels.forEach(x->x.neuronsSetUpDefault());
 				System.out.println("\n\n\n");
-				for(NeuronLevel neurons : neuronlevels) {
-					for(Neuron neuron : neurons.getNeurons()) {
-						System.out.print(neuron.getValue()+",");
+				for (NeuronLevel neurons : neuronlevels) {
+					for (Neuron neuron : neurons.getNeurons()) {
+						System.out.print(neuron.getValue() + ",");
 					}
 					System.out.println();
 				}
-			}			
-		} finally {
-			scanner.close();
-		}		
+			}
+		}
 	}
 	
-	public static void weighting(Scanner scanner, List<NeuronLevel> neuronlevels) {
+	static void weighting(Scanner scanner, List<NeuronLevel> neuronlevels) {
 		String[] ss;
 		int ll = 0;
 			for(int i=1; i<neuronlevels.size(); i++) {				
@@ -50,7 +53,7 @@ public class NNSolutionTwo {
 					ss = scanner.nextLine().split(",");
 					ll=0;
 					for (Neuron previousneuron : neuronlevels.get(i-1).getNeurons()) {
-						new Connection(previousneuron, neuron, Double.parseDouble(ss[ll]));						
+						new Connection(previousneuron, neuron, Double.parseDouble(ss[ll]));
 						ll++;
 					}
 				neuron.setBias(Double.parseDouble(ss[ll]));
@@ -58,7 +61,7 @@ public class NNSolutionTwo {
 		}
 	}
 	
-	public static void neuronsValueCalculated(String[] gerjesztoertekek, List<NeuronLevel> neuronlevels) {		
+	static void neuronsValueCalculated(String[] gerjesztoertekek, List<NeuronLevel> neuronlevels) {
 		/* Gerjesztőértékek beállítása */
 		int i=0;
 		for (Neuron neuron : neuronlevels.get(0).getNeurons()) {

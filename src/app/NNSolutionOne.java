@@ -1,3 +1,9 @@
+package app;
+
+import dom.Connection;
+import dom.Neuron;
+import dom.NeuronLevel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,11 +16,8 @@ public class NNSolutionOne {
 		neuronlevels = new ArrayList<NeuronLevel>();
 		
 		/* Bekérés */
-		Scanner scanner = new Scanner(System.in);
-		try {			
+		try (Scanner scanner = new Scanner(System.in)) {
 			entering(scanner, neuronlevels);
-		} finally {
-			scanner.close();
 		}
 		
 		/* Sulyozas */
@@ -36,11 +39,11 @@ public class NNSolutionOne {
 
 	}
 	
-	public static double random_value() {
+	private static double random_value() {
 		return (new Random().nextGaussian()*0.1);
 	}
 	
-	public static void entering(Scanner scanner, List<NeuronLevel> neuronlevels) throws RuntimeException{
+	static void entering(Scanner scanner, List<NeuronLevel> neuronlevels) throws RuntimeException{
 		
 		String[] ss = scanner.nextLine().split(",");
 		
@@ -90,7 +93,7 @@ public class NNSolutionOne {
 		neuronlevels.add(new NeuronLevel(neurons, neuronlevels.size()));
 	}
 	
-	public static void weighting(List<NeuronLevel> neuronlevels) {
+	private static void weighting(List<NeuronLevel> neuronlevels) {
 		for(int i=1; i<neuronlevels.size(); i++) {
 			for (Neuron neuron : neuronlevels.get(i).getNeurons()) {
 				for (Neuron previousneuron : neuronlevels.get(i-1).getNeurons()) {

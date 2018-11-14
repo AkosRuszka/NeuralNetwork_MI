@@ -1,3 +1,4 @@
+package dom;
 
 public class Connection {
 	private Neuron sender;
@@ -5,7 +6,7 @@ public class Connection {
 	private double weight;
 	private double partialweight;
 	
-	Connection(Neuron sender, Neuron receiver, double weight) {
+	public Connection(Neuron sender, Neuron receiver, double weight) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.weight = weight;
@@ -14,23 +15,23 @@ public class Connection {
 		receiver.addIncoming(this);
 	}
 
-	Neuron getSender() {
+	public Neuron getSender() {
 		return sender;
 	}
 
-	Neuron getReceiver() {
+	public Neuron getReceiver() {
 		return receiver;
 	}
 
-	double getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 	
-	double getPartialWeight() {
+	public double getPartialWeight() {
 		return partialweight;
 	}
 	
-	void setPartialWeight(double weight) {
+	public void setPartialWeight(double weight) {
 		this.partialweight = weight;
 	}
 	

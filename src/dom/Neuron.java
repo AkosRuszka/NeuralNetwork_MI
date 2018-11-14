@@ -1,24 +1,27 @@
+package dom;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class Neuron {
+public class Neuron {
 	private List<Connection> incoming;
 	private List<Connection> outgoing;
 	private double bias = 0.0;
 	private double partialbias;
-	
-	private double value; /* Megfeleltethető az 's' értéknek */
+
+	/* Megfeleltethető az 's' értéknek */
+	private double value;
 	private double delta;
 	
-	Neuron(boolean first) {
+	public Neuron(boolean first) {
 		value = 0;
 		delta = 0;
 		if(first) {
 			incoming = null;
 		} else {
-			incoming = new ArrayList<Connection>();
+			incoming = new ArrayList<>();
 		}
-		outgoing = new ArrayList<Connection>();
+		outgoing = new ArrayList<>();
 	}
 	
 	void addIncoming(Connection oneconnection) {
@@ -29,55 +32,51 @@ class Neuron {
 		outgoing.add(oneconnection);
 	}
 	
-	double getBias() {
+	public double getBias() {
 		return bias;
 	}
-
-	void clearValue() {
-		value = 0;
-	}
 	
-	void setBias(double bias) {
+	public void setBias(double bias) {
 		this.bias = bias;
 	}
 	
-	void setValue(double value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 	
-	void addValue(double value) {
+	public void addValue(double value) {
 		this.value += value;
 	}
 	
-	double getValue() {
+	public double getValue() {
 		return value;
 	}
 	
-	double getDelta() {
+	public double getDelta() {
 		return delta;
 	}
 	
-	void setPartialBias(double partialbias) {
+	public void setPartialBias(double partialbias) {
 		this.partialbias = partialbias;
 	}
 	
-	double getPartialBias() {
+	public double getPartialBias() {
 		return this.partialbias;
 	}
 	
-	void setDelta(double delta) {
+	public void setDelta(double delta) {
 		this.delta = delta;
 	}
 	
-	void addDelta(double delta) {
+	public void addDelta(double delta) {
 		this.delta += delta;
 	}
 	
-	List<Connection> getOutgoing() {
+	public List<Connection> getOutgoing() {
 		return outgoing;
 	}
 	
-	List<Connection> getIncoming() {
+	public List<Connection> getIncoming() {
 		return incoming;
 	}
  }
