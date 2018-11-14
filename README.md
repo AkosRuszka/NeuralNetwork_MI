@@ -75,4 +75,4 @@ Hozzá tartozó elvárt kimenet:
 
 #### Alap neurális hálózat minta
 
-[[/images/neuron_network.png|Neuron network]]
+![Neuron network](https://github.com/AkosRuszka/NeuronNetwork_MI/blob/master/images/neuron_network.png)
